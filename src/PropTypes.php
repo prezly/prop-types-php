@@ -3,6 +3,7 @@ namespace Prezly\PropTypes;
 
 use InvalidArgumentException;
 use Prezly\PropTypes\Checkers\AnyTypeChecker;
+use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Checkers\TypeChecker;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
@@ -46,8 +47,8 @@ final class PropTypes
         }
     }
 
-    public static function any(): TypeChecker
+    public static function any(): ChainableTypeChecker
     {
-        return new AnyTypeChecker();
+        return new ChainableTypeChecker(new AnyTypeChecker());
     }
 }
