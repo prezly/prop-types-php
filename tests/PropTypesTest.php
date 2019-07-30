@@ -58,6 +58,10 @@ class PropTypesTest extends TestCase
             ['name' => PropTypes::any()],
             ['name' => null],
         ];
+        yield 'any property: missing' => [
+            ['name' => PropTypes::any()],
+            [],
+        ];
     }
 
     public function invalid_data_examples(): iterable
