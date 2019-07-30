@@ -14,6 +14,12 @@ class PropTypesTest extends TestCase
     public function it_should_provide_chainable_type_checkers()
     {
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::any());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::array());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::bool());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::int());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::float());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::object());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::string());
     }
 
     /**
