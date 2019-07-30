@@ -4,6 +4,7 @@ namespace Prezly\PropTypes;
 use InvalidArgumentException;
 use Prezly\PropTypes\Checkers\AnyTypeChecker;
 use Prezly\PropTypes\Checkers\TypeChecker;
+use Prezly\PropTypes\Exceptions\PropTypeException;
 
 final class PropTypes
 {
@@ -24,6 +25,16 @@ final class PropTypes
                     is_object($checker) ? get_class($checker) : gettype($checker),
                     $key
                 ));
+            }
+        }
+
+        foreach (array_keys($values) as $prop_name) {
+            if (! isset($specs[$prop_name])) {
+                throw new PropTypeException(
+                    $prop_name,
+                    'unexpected_extra_property',
+                    "Unexpected extra property `{$prop_name}` supplied."
+                );
             }
         }
 
