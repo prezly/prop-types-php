@@ -52,6 +52,7 @@ class PrimitiveTypeCheckerTest extends TestCase
             'valid float (INF)'       => ['double', INF],
             'valid object'            => ['object', $this],
             'valid string'            => ['string', 'Elvis'],
+            'valid null'              => ['NULL', null],
         ];
     }
 
