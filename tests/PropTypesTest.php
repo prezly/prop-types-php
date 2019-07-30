@@ -2,11 +2,20 @@
 namespace Prezly\PropTypes\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Prezly\PropTypes\Checkers\TypeChecker;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 use Prezly\PropTypes\PropTypes;
 
 class PropTypesTest extends TestCase
 {
+    /**
+     * @test
+     */
+    public function it_should_provide_type_checkers()
+    {
+        $this->assertInstanceOf(TypeChecker::class, PropTypes::any());
+    }
+
     /**
      * @test
      * @dataProvider valid_data_examples
