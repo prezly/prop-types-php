@@ -2,7 +2,7 @@
 namespace Prezly\PropTypes\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Prezly\PropTypes\Checkers\TypeChecker;
+use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 use Prezly\PropTypes\PropTypes;
 
@@ -11,9 +11,9 @@ class PropTypesTest extends TestCase
     /**
      * @test
      */
-    public function it_should_provide_type_checkers()
+    public function it_should_provide_chainable_type_checkers()
     {
-        $this->assertInstanceOf(TypeChecker::class, PropTypes::any());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::any());
     }
 
     /**
@@ -33,41 +33,44 @@ class PropTypesTest extends TestCase
      * @dataProvider invalid_data_examples
      * @param array $specs
      * @param array $values
-     * @param string $expected_err_prop
-     * @param string $expected_err_code
-     * @param string $expected_err_message
      */
-    public function it_should_throw_on_invalid_data(
-        array $specs,
-        array $values,
-        string $expected_err_prop,
-        string $expected_err_code,
-        string $expected_err_message
-    ) {
+    public function it_should_throw_on_invalid_data(array $specs, array $values)
+    {
+        $this->expectException(PropTypeException::class);
+        PropTypes::checkPropTypes($specs, $values);
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_throw_on_unexpected_extra_properties()
+    {
         try {
-            PropTypes::checkPropTypes($specs, $values);
+            PropTypes::checkPropTypes([
+                'name' => PropTypes::any(),
+            ], [
+                'name' => 'Elvis Presley',
+                'job'  => 'The King',
+            ]);
         } catch (PropTypeException $error) {
             $this->assertInstanceOf(PropTypeException::class, $error);
-            $this->assertEquals($expected_err_prop, $error->getPropName());
-            $this->assertEquals($expected_err_code, $error->getErrorCode());
-            $this->assertEquals($expected_err_message, $error->getMessage());
-            return;
+            $this->assertEquals('job', $error->getPropName());
+            $this->assertEquals('unexpected_extra_property', $error->getErrorCode());
+            $this->assertEquals('Unexpected extra property `job` supplied.', $error->getMessage());
         }
-
-        $this->expectException(PropTypeException::class);
     }
 
     public function valid_data_examples(): iterable
     {
-        yield 'any property: string' => [
-            ['name' => PropTypes::any()],
+        yield 'any: string' => [
+            ['name' => PropTypes::any()->isRequired()],
             ['name' => 'Elvis Presley'],
         ];
-        yield 'any property: null' => [
-            ['name' => PropTypes::any()],
+        yield 'any: null' => [
+            ['name' => PropTypes::any()->isNullable()],
             ['name' => null],
         ];
-        yield 'any property: missing' => [
+        yield 'any: missing' => [
             ['name' => PropTypes::any()],
             [],
         ];
@@ -75,12 +78,19 @@ class PropTypesTest extends TestCase
 
     public function invalid_data_examples(): iterable
     {
+        yield 'any: null when not-nullable' => [
+            ['name' => PropTypes::any()],
+            ['name' => null],
+        ];
+
+        yield 'any: missing when required' => [
+            ['name' => PropTypes::any()->isRequired()],
+            [],
+        ];
+
         yield 'extra property "occupation"' => [
             ['name' => PropTypes::any()],
             ['name' => 'Elvis Presley', 'occupation' => 'The King'],
-            'occupation',
-            'unexpected_extra_property',
-            'Unexpected extra property `occupation` supplied.',
         ];
     }
 }
