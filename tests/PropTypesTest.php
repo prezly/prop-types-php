@@ -16,6 +16,7 @@ class PropTypesTest extends TestCase
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::any());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::array());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::bool());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::instanceOf(self::class));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::int());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::float());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::object());
