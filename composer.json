@@ -1,0 +1,21 @@
+{
+    "name": "prezly/prop-types",
+    "description": "Complete PHP port of React PropTypes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Voskoboinyk",
+            "email": "ivan@prezly.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1,<7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Prezly\\PropTypes\\": "./src"
+        }
+    }
+}
