@@ -3,6 +3,7 @@ namespace Prezly\PropTypes;
 
 use InvalidArgumentException;
 use Prezly\PropTypes\Checkers\AnyTypeChecker;
+use Prezly\PropTypes\Checkers\ArrayOfTypeChecker;
 use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Checkers\InstanceTypeChecker;
 use Prezly\PropTypes\Checkers\PrimitiveTypeChecker;
@@ -57,6 +58,11 @@ final class PropTypes
     public static function array(): ChainableTypeChecker
     {
         return new ChainableTypeChecker(new PrimitiveTypeChecker('array'));
+    }
+
+    public static function arrayOf(TypeChecker $checker): ChainableTypeChecker
+    {
+        return new ChainableTypeChecker(new ArrayOfTypeChecker($checker));
     }
 
     public static function bool(): ChainableTypeChecker
