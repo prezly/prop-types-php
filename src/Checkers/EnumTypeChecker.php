@@ -4,7 +4,7 @@ namespace Prezly\PropTypes\Checkers;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 use stdClass;
 
-class EnumTypeChecker implements TypeChecker
+final class EnumTypeChecker implements TypeChecker
 {
     /** @var array */
     private $expected_values;

@@ -4,7 +4,7 @@ namespace Prezly\PropTypes\Checkers;
 use InvalidArgumentException;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
-class UnionTypeChecker implements TypeChecker
+final class UnionTypeChecker implements TypeChecker
 {
     /** @var \Prezly\PropTypes\Checkers\TypeChecker[] */
     private $checkers;

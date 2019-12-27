@@ -3,7 +3,7 @@ namespace Prezly\PropTypes\Checkers;
 
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
-class AnyTypeChecker implements TypeChecker
+final class AnyTypeChecker implements TypeChecker
 {
     /**
      * @param array $props

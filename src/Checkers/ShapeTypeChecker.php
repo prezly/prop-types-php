@@ -4,7 +4,7 @@ namespace Prezly\PropTypes\Checkers;
 use InvalidArgumentException;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
-class ShapeTypeChecker implements TypeChecker
+final class ShapeTypeChecker implements TypeChecker
 {
     /** @var \Prezly\PropTypes\Checkers\TypeChecker[] */
     private $shape_types;

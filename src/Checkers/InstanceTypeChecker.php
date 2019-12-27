@@ -3,7 +3,7 @@ namespace Prezly\PropTypes\Checkers;
 
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
-class InstanceTypeChecker implements TypeChecker
+final class InstanceTypeChecker implements TypeChecker
 {
     /** @var string */
     private $expected_class;

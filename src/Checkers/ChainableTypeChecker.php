@@ -3,7 +3,7 @@ namespace Prezly\PropTypes\Checkers;
 
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
-class ChainableTypeChecker implements TypeChecker
+final class ChainableTypeChecker implements TypeChecker
 {
     /** @var \Prezly\PropTypes\Checkers\TypeChecker */
     private $checker;

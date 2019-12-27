@@ -4,7 +4,7 @@ namespace Prezly\PropTypes\Checkers;
 use InvalidArgumentException;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
-class CallbackTypeChecker implements TypeChecker
+final class CallbackTypeChecker implements TypeChecker
 {
     /** @var \Closure */
     private $callback;
