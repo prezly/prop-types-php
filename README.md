@@ -1,4 +1,5 @@
 # prop-types-php
+
 Complete PHP port of React PropTypes
 
 ## Development roadmap
@@ -13,8 +14,8 @@ Complete PHP port of React PropTypes
 - [x] - `PropTypes::array()`
 - [x] - `PropTypes::arrayOf()`
 - [x] - `PropTypes::instanceOf()`
-- [ ] - `PropTypes::oneOf()`
-- [ ] - `PropTypes::oneOfType()`
+- [x] - `PropTypes::oneOf()`
+- [x] - `PropTypes::oneOfType()`
 - [x] - `PropTypes::shape()`
 - [x] - `PropTypes::exact()`
 - [x] - `PropTypes::callback()`
