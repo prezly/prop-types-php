@@ -101,6 +101,17 @@ class PropTypesTest extends TestCase
                 'last' => 'Presley',
             ]]
         ];
+
+        yield 'exact' => [
+            ['name' => PropTypes::shape([
+                'first' => PropTypes::string()->isRequired(),
+                'last' => PropTypes::string()->isRequired(),
+            ])],
+            ['name' => [
+                'first' => 'Elvis',
+                'last' => 'Presley',
+            ]]
+        ];
     }
 
     public function invalid_data_examples(): iterable
@@ -132,24 +143,13 @@ class PropTypesTest extends TestCase
             ])],
             ['name' => 'Elvis Presley'],
         ];
-        yield 'shape: required prop missing' => [
+
+        yield 'exact: not a shape' => [
             ['name' => PropTypes::shape([
                 'first' => PropTypes::string()->isRequired(),
                 'last' => PropTypes::string()->isRequired(),
             ])],
-            ['name' => [
-                'first' => 'Elvis',
-            ]],
-        ];
-        yield 'shape: incorrect prop type' => [
-            ['name' => PropTypes::shape([
-                'first' => PropTypes::string()->isRequired(),
-                'last' => PropTypes::string()->isRequired(),
-            ])],
-            ['name' => [
-                'first' => 'Elvis',
-                'last' => 42,
-            ]],
+            ['name' => 'Elvis Presley'],
         ];
     }
 }
