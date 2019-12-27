@@ -83,6 +83,22 @@ class PropTypesTest extends TestCase
             ['name' => PropTypes::any()],
             [],
         ];
+
+        yield 'arrayOf: string' => [
+            ['friends' => PropTypes::arrayOf(PropTypes::string())],
+            ['friends' => ['John Galt']]
+        ];
+
+        yield 'shape' => [
+            ['name' => PropTypes::shape([
+                'first' => PropTypes::string()->isRequired(),
+                'last' => PropTypes::string()->isRequired(),
+            ])],
+            ['name' => [
+                'first' => 'Elvis',
+                'last' => 'Presley',
+            ]]
+        ];
     }
 
     public function invalid_data_examples(): iterable
@@ -100,6 +116,38 @@ class PropTypesTest extends TestCase
         yield 'extra property "occupation"' => [
             ['name' => PropTypes::any()],
             ['name' => 'Elvis Presley', 'occupation' => 'The King'],
+        ];
+
+        yield 'arrayOf: invalid type' => [
+            ['friends' => PropTypes::arrayOf(PropTypes::string())],
+            ['friends' => [42]]
+        ];
+
+        yield 'shape: not a shape' => [
+            ['name' => PropTypes::shape([
+                'first' => PropTypes::string()->isRequired(),
+                'last' => PropTypes::string()->isRequired(),
+            ])],
+            ['name' => 'Elvis Presley'],
+        ];
+        yield 'shape: required prop missing' => [
+            ['name' => PropTypes::shape([
+                'first' => PropTypes::string()->isRequired(),
+                'last' => PropTypes::string()->isRequired(),
+            ])],
+            ['name' => [
+                'first' => 'Elvis',
+            ]],
+        ];
+        yield 'shape: incorrect prop type' => [
+            ['name' => PropTypes::shape([
+                'first' => PropTypes::string()->isRequired(),
+                'last' => PropTypes::string()->isRequired(),
+            ])],
+            ['name' => [
+                'first' => 'Elvis',
+                'last' => 42,
+            ]],
         ];
     }
 }
