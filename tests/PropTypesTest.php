@@ -18,13 +18,14 @@ class PropTypesTest extends TestCase
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::arrayOf(PropTypes::any()));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::bool());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::callback('is_null'));
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::exact([]));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::instanceOf(self::class));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::int());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::float());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::null());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::object());
-        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::string());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::shape([]));
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::string());
     }
 
     /**
@@ -101,6 +102,17 @@ class PropTypesTest extends TestCase
                 'last' => 'Presley',
             ]]
         ];
+
+        yield 'exact' => [
+            ['name' => PropTypes::shape([
+                'first' => PropTypes::string()->isRequired(),
+                'last' => PropTypes::string()->isRequired(),
+            ])],
+            ['name' => [
+                'first' => 'Elvis',
+                'last' => 'Presley',
+            ]]
+        ];
     }
 
     public function invalid_data_examples(): iterable
@@ -132,24 +144,13 @@ class PropTypesTest extends TestCase
             ])],
             ['name' => 'Elvis Presley'],
         ];
-        yield 'shape: required prop missing' => [
+
+        yield 'exact: not a shape' => [
             ['name' => PropTypes::shape([
                 'first' => PropTypes::string()->isRequired(),
                 'last' => PropTypes::string()->isRequired(),
             ])],
-            ['name' => [
-                'first' => 'Elvis',
-            ]],
-        ];
-        yield 'shape: incorrect prop type' => [
-            ['name' => PropTypes::shape([
-                'first' => PropTypes::string()->isRequired(),
-                'last' => PropTypes::string()->isRequired(),
-            ])],
-            ['name' => [
-                'first' => 'Elvis',
-                'last' => 42,
-            ]],
+            ['name' => 'Elvis Presley'],
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace Prezly\PropTypes\Checkers;
 use InvalidArgumentException;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
-class ShapeTypeChecker implements TypeChecker
+class StrictShapeTypeChecker implements TypeChecker
 {
     /** @var \Prezly\PropTypes\Checkers\TypeChecker[] */
     private $shape_types;
@@ -17,7 +17,7 @@ class ShapeTypeChecker implements TypeChecker
         foreach ($shape_types as $key => $checker) {
             if (! $checker instanceof TypeChecker) {
                 throw new InvalidArgumentException(sprintf(
-                    'Invalid argument supplied to shape(). Expected an associative array of %s instances, but received %s at key "%s".',
+                    'Invalid argument supplied to exact(). Expected an associative array of %s instances, but received %s at key "%s".',
                     TypeChecker::class,
                     is_object($checker) ? 'instance of ' . get_class($checker) : gettype($checker),
                     $key
@@ -48,7 +48,23 @@ class ShapeTypeChecker implements TypeChecker
             );
         }
 
-        foreach ($this->shape_types as $key => $checker) {
+        $all_keys = array_unique(
+            array_merge(
+                array_keys($prop_value),
+                array_keys($this->shape_types)
+            )
+        );
+        foreach ($all_keys as $key) {
+            $checker = $this->shape_types[$key] ?? null;
+
+            if (empty($checker)) {
+                return new PropTypeException(
+                    $prop_name,
+                    'invalid',
+                    "Invalid property `{$prop_full_name}` with unexpected key `${key}` supplied."
+                );
+            }
+
             $error = $checker->validate($prop_value, (string) $key, "{$prop_full_name}.{$key}");
 
             if ($error !== null) {
