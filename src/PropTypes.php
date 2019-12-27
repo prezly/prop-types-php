@@ -17,19 +17,19 @@ use Prezly\PropTypes\Exceptions\PropTypeException;
 
 final class PropTypes
 {
-    const DEFAULT_OPTIONS = [
+    private const DEFAULT_OPTIONS = [
         'allow_extra_properties' => false,
     ];
 
     /**
      * @param \Prezly\PropTypes\Checkers\TypeChecker[] $specs
-     * @param array $values
+     * @param array $props
      * @param array $options
      *        - bool "allow_extra_properties" (default: false)
      * @throws \Prezly\PropTypes\Exceptions\PropTypeException When a prop-type validation fails.
      * @throws \InvalidArgumentException When invalid specs configuration was given.
      */
-    public static function check(array $specs, array $values, array $options = []): void
+    public static function check(array $specs, array $props, array $options = []): void
     {
         $options = array_merge(self::DEFAULT_OPTIONS, $options);
 
@@ -46,7 +46,7 @@ final class PropTypes
         }
 
         if (! $options['allow_extra_properties']) {
-            foreach (array_keys($values) as $prop_name) {
+            foreach (array_keys($props) as $prop_name) {
                 if (! isset($specs[$prop_name])) {
                     throw new PropTypeException(
                         $prop_name,
@@ -58,7 +58,7 @@ final class PropTypes
         }
 
         foreach ($specs as $prop_name => $checker) {
-            $error = $checker->validate($values, $prop_name, $prop_name);
+            $error = $checker->validate($props, $prop_name, $prop_name);
             if ($error !== null) {
                 throw $error;
             }
