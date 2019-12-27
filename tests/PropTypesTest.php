@@ -24,6 +24,7 @@ class PropTypesTest extends TestCase
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::float());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::null());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::object());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::oneOfType([]));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::shape([]));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::string());
     }
@@ -113,6 +114,15 @@ class PropTypesTest extends TestCase
                 'last' => 'Presley',
             ]]
         ];
+
+        yield 'one of type' => [
+            ['name' => PropTypes::oneOfType([
+                PropTypes::string(),
+                PropTypes::int(),
+                PropTypes::float(),
+            ])],
+            ['name' => 1.5],
+        ];
     }
 
     public function invalid_data_examples(): iterable
@@ -151,6 +161,14 @@ class PropTypesTest extends TestCase
                 'last' => PropTypes::string()->isRequired(),
             ])],
             ['name' => 'Elvis Presley'],
+        ];
+
+        yield 'one of type' => [
+            ['name' => PropTypes::shape([
+                'first' => PropTypes::string()->isRequired(),
+                'last' => PropTypes::string()->isRequired(),
+            ])],
+            ['name' => false],
         ];
     }
 }

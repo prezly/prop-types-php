@@ -11,6 +11,7 @@ use Prezly\PropTypes\Checkers\PrimitiveTypeChecker;
 use Prezly\PropTypes\Checkers\ShapeTypeChecker;
 use Prezly\PropTypes\Checkers\StrictShapeTypeChecker;
 use Prezly\PropTypes\Checkers\TypeChecker;
+use Prezly\PropTypes\Checkers\UnionTypeChecker;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
 final class PropTypes
@@ -77,7 +78,7 @@ final class PropTypes
     {
         return new ChainableTypeChecker(new CallbackTypeChecker($callback));
     }
-  
+
     public static function exact(array $shape): ChainableTypeChecker
     {
         return new ChainableTypeChecker(new StrictShapeTypeChecker($shape));
@@ -106,6 +107,11 @@ final class PropTypes
     public static function object(): ChainableTypeChecker
     {
         return new ChainableTypeChecker(new PrimitiveTypeChecker('object'));
+    }
+
+    public static function oneOfType(array $checkers): ChainableTypeChecker
+    {
+        return new ChainableTypeChecker(new UnionTypeChecker($checkers));
     }
 
     public static function shape(array $shape): ChainableTypeChecker
