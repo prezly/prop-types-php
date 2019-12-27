@@ -48,7 +48,12 @@ class StrictShapeTypeChecker implements TypeChecker
             );
         }
 
-        $all_keys = array_keys(array_merge($prop_value, $this->shape_types));
+        $all_keys = array_unique(
+            array_merge(
+                array_keys($prop_value),
+                array_keys($this->shape_types)
+            )
+        );
         foreach ($all_keys as $key) {
             $checker = $this->shape_types[$key] ?? null;
 
@@ -63,7 +68,7 @@ class StrictShapeTypeChecker implements TypeChecker
             $error = $checker->validate($prop_value, (string) $key, "{$prop_full_name}.{$key}");
 
             if ($error !== null) {
-                return $error;
+                return new PropTypeException($prop_name, 'invalid', $error->getMessage(), $error);
             }
         }
 
