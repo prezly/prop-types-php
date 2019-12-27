@@ -17,13 +17,14 @@ class PropTypesTest extends TestCase
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::array());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::arrayOf(PropTypes::any()));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::bool());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::exact([]));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::instanceOf(self::class));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::int());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::float());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::null());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::object());
-        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::string());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::shape([]));
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::string());
     }
 
     /**

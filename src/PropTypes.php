@@ -8,6 +8,7 @@ use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Checkers\InstanceTypeChecker;
 use Prezly\PropTypes\Checkers\PrimitiveTypeChecker;
 use Prezly\PropTypes\Checkers\ShapeTypeChecker;
+use Prezly\PropTypes\Checkers\StrictShapeTypeChecker;
 use Prezly\PropTypes\Checkers\TypeChecker;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
@@ -69,6 +70,11 @@ final class PropTypes
     public static function bool(): ChainableTypeChecker
     {
         return new ChainableTypeChecker(new PrimitiveTypeChecker('boolean'));
+    }
+
+    public static function exact(array $shape): ChainableTypeChecker
+    {
+        return new ChainableTypeChecker(new StrictShapeTypeChecker($shape));
     }
 
     public static function instanceOf(string $expected_class): ChainableTypeChecker
