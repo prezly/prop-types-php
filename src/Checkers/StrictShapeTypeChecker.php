@@ -48,7 +48,7 @@ class StrictShapeTypeChecker implements TypeChecker
             );
         }
 
-        $all_keys = array_keys(array_merge($props, $this->shape_types));
+        $all_keys = array_keys(array_merge($prop_value, $this->shape_types));
         foreach ($all_keys as $key) {
             $checker = $this->shape_types[$key] ?? null;
 
