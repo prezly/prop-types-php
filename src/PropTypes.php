@@ -4,6 +4,7 @@ namespace Prezly\PropTypes;
 use InvalidArgumentException;
 use Prezly\PropTypes\Checkers\AnyTypeChecker;
 use Prezly\PropTypes\Checkers\ArrayOfTypeChecker;
+use Prezly\PropTypes\Checkers\CallbackTypeChecker;
 use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Checkers\InstanceTypeChecker;
 use Prezly\PropTypes\Checkers\PrimitiveTypeChecker;
@@ -72,6 +73,11 @@ final class PropTypes
         return new ChainableTypeChecker(new PrimitiveTypeChecker('boolean'));
     }
 
+    public static function callback(callable $callback): ChainableTypeChecker
+    {
+        return new ChainableTypeChecker(new CallbackTypeChecker($callback));
+    }
+  
     public static function exact(array $shape): ChainableTypeChecker
     {
         return new ChainableTypeChecker(new StrictShapeTypeChecker($shape));
