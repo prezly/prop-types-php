@@ -1,7 +1,6 @@
 <?php
 namespace Prezly\PropTypes\Checkers;
 
-use Closure;
 use InvalidArgumentException;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
@@ -11,9 +10,9 @@ class CallbackTypeChecker implements TypeChecker
     private $callback;
 
     /**
-     * @param \Closure $callback (array $props, string $prop_name, ?string $component_name = null): ?PropTypeException()
+     * @param callable $callback (array $props, string $prop_name, string $prop_full_name): ?PropTypeException()
      */
-    public function __construct(Closure $callback)
+    public function __construct(callable $callback)
     {
         $this->callback = $callback;
     }
