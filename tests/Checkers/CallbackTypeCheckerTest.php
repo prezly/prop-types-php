@@ -16,10 +16,10 @@ class CallbackTypeCheckerTest extends TestCase
     {
         $checker = (new CallbackTypeChecker(function (...$arguments) {
             $this->assertCount(3, $arguments);
-            [$props, $prop_name, $full_prop_name] = $arguments;
+            [$props, $prop_name, $prop_full_name] = $arguments;
             $this->assertSame(['name' => 'Elvis Presley'], $props);
             $this->assertSame('name', $prop_name);
-            $this->assertSame('test.name', $full_prop_name);
+            $this->assertSame('test.name', $prop_full_name);
         }));
 
         $error = $checker->validate(['name' => 'Elvis Presley'], 'name', 'test.name');

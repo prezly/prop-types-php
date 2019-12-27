@@ -30,13 +30,13 @@ final class UnionTypeChecker implements TypeChecker
     /**
      * @param array $props
      * @param string $prop_name
-     * @param string $full_prop_name
+     * @param string $prop_full_name
      * @return \Prezly\PropTypes\Exceptions\PropTypeException|null Exception is returned if prop type is invalid
      */
-    public function validate(array $props, string $prop_name, string $full_prop_name): ?PropTypeException
+    public function validate(array $props, string $prop_name, string $prop_full_name): ?PropTypeException
     {
         foreach ($this->checkers as $checker) {
-            $checker_result = $checker->validate($props, $prop_name, $full_prop_name);
+            $checker_result = $checker->validate($props, $prop_name, $prop_full_name);
             if ($checker_result === null) {
                 return null;
             }
@@ -45,7 +45,7 @@ final class UnionTypeChecker implements TypeChecker
         return new PropTypeException(
             $prop_name,
             'invalid',
-            "Invalid `{$full_prop_name}` supplied, none of types matched."
+            "Invalid `{$prop_full_name}` supplied, none of types matched."
         );
     }
 }

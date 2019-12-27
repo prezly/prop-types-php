@@ -20,10 +20,10 @@ final class EnumTypeChecker implements TypeChecker
     /**
      * @param array $props
      * @param string $prop_name
-     * @param string $full_prop_name
+     * @param string $prop_full_name
      * @return \Prezly\PropTypes\Exceptions\PropTypeException|null Exception is returned if prop type is invalid
      */
-    public function validate(array $props, string $prop_name, string $full_prop_name): ?PropTypeException
+    public function validate(array $props, string $prop_name, string $prop_full_name): ?PropTypeException
     {
         $prop_value = $props[$prop_name];
 
@@ -39,7 +39,7 @@ final class EnumTypeChecker implements TypeChecker
         return new PropTypeException(
             $prop_name,
             'invalid',
-            "Invalid property `{$full_prop_name}` of value `{$value_string}` supplied, expected one of: {$expected_values_string}."
+            "Invalid property `{$prop_full_name}` of value `{$value_string}` supplied, expected one of: {$expected_values_string}."
         );
     }
 
