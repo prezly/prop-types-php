@@ -1,21 +1,6 @@
-# prop-types-php
+# PropTypes.php
 
 Complete PHP port of React PropTypes
 
-## Development roadmap
-
-- [x] - `PropTypes::any()`
-- [x] - `PropTypes::bool()`
-- [x] - `PropTypes::int()`
-- [x] - `PropTypes::float()`
-- [x] - `PropTypes::string()`
-- [x] - `PropTypes::object()`
-- [x] - `PropTypes::array()`
-- [x] - `PropTypes::arrayOf()`
-- [x] - `PropTypes::instanceOf()`
-- [x] - `PropTypes::oneOf()`
-- [x] - `PropTypes::oneOfType()`
-- [x] - `PropTypes::shape()`
-- [x] - `PropTypes::exact()`
-- [x] - `PropTypes::callback()`
+<img src="https://github.com/prezly/prop-types-php/workflows/Test/badge.svg" alt="Build status">
 
