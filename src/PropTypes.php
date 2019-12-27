@@ -100,11 +100,6 @@ final class PropTypes
         return new ChainableTypeChecker(new PrimitiveTypeChecker('double'));
     }
 
-    public static function null(): ChainableTypeChecker
-    {
-        return new ChainableTypeChecker(new PrimitiveTypeChecker('NULL'));
-    }
-
     public static function object(): ChainableTypeChecker
     {
         return new ChainableTypeChecker(new PrimitiveTypeChecker('object'));

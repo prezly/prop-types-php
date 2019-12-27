@@ -5,7 +5,6 @@ Complete PHP port of React PropTypes
 ## Development roadmap
 
 - [x] - `PropTypes::any()`
-- [x] - `PropTypes::null()`
 - [x] - `PropTypes::bool()`
 - [x] - `PropTypes::int()`
 - [x] - `PropTypes::float()`
