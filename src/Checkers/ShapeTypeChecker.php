@@ -1,16 +1,31 @@
 <?php
 namespace Prezly\PropTypes\Checkers;
 
+use InvalidArgumentException;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
 class ShapeTypeChecker implements TypeChecker
 {
     /** @var \Prezly\PropTypes\Checkers\TypeChecker[] */
-    private $shape;
+    private $shape_types;
 
-    public function __construct(array $shape)
+    /**
+     * @param \Prezly\PropTypes\Checkers\TypeChecker[] $shape_types
+     */
+    public function __construct(array $shape_types)
     {
-        $this->shape = $shape;
+        foreach ($shape_types as $key => $checker) {
+            if (! $checker instanceof TypeChecker) {
+                throw new InvalidArgumentException(sprintf(
+                    'Invalid argument supplied to shape(). Expected an associative array of %s instances, but received %s at key "%s".',
+                    TypeChecker::class,
+                    is_object($checker) ? get_class($checker) : gettype($checker),
+                    $key
+                ));
+            }
+        }
+
+        $this->shape_types = $shape_types;
     }
 
     /**
@@ -33,10 +48,8 @@ class ShapeTypeChecker implements TypeChecker
             );
         }
 
-        foreach (array_keys($this->shape) as $shape_prop_name) {
-            $shape_prop_checker = $this->shape[$shape_prop_name];
-
-            $error = $shape_prop_checker->validate($prop_value, (string) $shape_prop_name, "{$prop_full_name}.{$shape_prop_name}");
+        foreach ($this->shape_types as $key => $checker) {
+            $error = $checker->validate($prop_value, (string) $key, "{$prop_full_name}.{$key}");
 
             if ($error !== null) {
                 return $error;
