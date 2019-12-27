@@ -16,6 +16,6 @@ Complete PHP port of React PropTypes
 - [ ] - `PropTypes::oneOf()`
 - [ ] - `PropTypes::oneOfType()`
 - [x] - `PropTypes::shape()`
-- [ ] - `PropTypes::exact()`
-- [ ] - `PropTypes::callback()`
+- [x] - `PropTypes::exact()`
+- [x] - `PropTypes::callback()`
 
