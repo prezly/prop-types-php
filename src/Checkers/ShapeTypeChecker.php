@@ -19,7 +19,7 @@ class ShapeTypeChecker implements TypeChecker
                 throw new InvalidArgumentException(sprintf(
                     'Invalid argument supplied to shape(). Expected an associative array of %s instances, but received %s at key "%s".',
                     TypeChecker::class,
-                    is_object($checker) ? get_class($checker) : gettype($checker),
+                    is_object($checker) ? 'instance of ' . get_class($checker) : gettype($checker),
                     $key
                 ));
             }
