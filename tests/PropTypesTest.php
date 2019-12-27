@@ -24,6 +24,7 @@ class PropTypesTest extends TestCase
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::float());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::null());
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::object());
+        $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::oneOfType([]));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::oneOf([]));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::shape([]));
         $this->assertInstanceOf(ChainableTypeChecker::class, PropTypes::string());
@@ -115,6 +116,15 @@ class PropTypesTest extends TestCase
             ]]
         ];
 
+        yield 'one of type' => [
+            ['name' => PropTypes::oneOfType([
+                PropTypes::string(),
+                PropTypes::int(),
+                PropTypes::float(),
+            ])],
+            ['name' => 1.5],
+        ];
+
         yield 'one of' => [
             ['fruit' => PropTypes::oneOf(['apple', 'banana', 'citrus'])],
             ['fruit' => 'banana']
@@ -159,9 +169,17 @@ class PropTypesTest extends TestCase
             ['name' => 'Elvis Presley'],
         ];
 
-        yield 'one of: not in list' => [
+        yield 'one of type' => [
+            ['name' => PropTypes::shape([
+                'first' => PropTypes::string()->isRequired(),
+                'last' => PropTypes::string()->isRequired(),
+            ])],
+            ['name' => false],
+      ];
+
+      yield 'one of: not in list' => [
             ['fruit' => PropTypes::oneOf(['apple', 'banana', 'citrus'])],
-            ['fruit' => 'potato']
-        ];
+            ['fruit' => 'potato'],
+      ];
     }
 }
