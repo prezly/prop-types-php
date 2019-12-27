@@ -37,7 +37,7 @@ class PropTypesTest extends TestCase
      */
     public function it_should_silently_pass_valid_data(array $specs, array $values)
     {
-        PropTypes::checkPropTypes($specs, $values);
+        PropTypes::check($specs, $values);
         $this->assertTrue(true, "PropTypes::checkPropTypes didn't throw an exception");
     }
 
@@ -50,7 +50,7 @@ class PropTypesTest extends TestCase
     public function it_should_throw_on_invalid_data(array $specs, array $values)
     {
         $this->expectException(PropTypeException::class);
-        PropTypes::checkPropTypes($specs, $values);
+        PropTypes::check($specs, $values);
     }
 
     /**
@@ -59,7 +59,7 @@ class PropTypesTest extends TestCase
     public function it_should_throw_on_unexpected_extra_properties()
     {
         try {
-            PropTypes::checkPropTypes([
+            PropTypes::check([
                 'name' => PropTypes::any(),
             ], [
                 'name' => 'Elvis Presley',
@@ -71,6 +71,23 @@ class PropTypesTest extends TestCase
             $this->assertEquals('unexpected_extra_property', $error->getErrorCode());
             $this->assertEquals('Unexpected extra property `job` supplied.', $error->getMessage());
         }
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_allow_extra_properties_if_configured()
+    {
+        PropTypes::check([
+            'name' => PropTypes::any(),
+        ], [
+            'name' => 'Elvis Presley',
+            'job'  => 'The King',
+        ], [
+            'allow_extra_properties' => true,
+        ]);
+
+        $this->assertTrue(true);
     }
 
     public function valid_data_examples(): iterable
