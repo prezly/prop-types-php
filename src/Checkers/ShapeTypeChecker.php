@@ -52,7 +52,7 @@ class ShapeTypeChecker implements TypeChecker
             $error = $checker->validate($prop_value, (string) $key, "{$prop_full_name}.{$key}");
 
             if ($error !== null) {
-                return $error;
+                return new PropTypeException($prop_name, 'invalid', $error->getMessage(), $error);
             }
         }
 
