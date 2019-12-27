@@ -6,6 +6,7 @@ use Prezly\PropTypes\Checkers\AnyTypeChecker;
 use Prezly\PropTypes\Checkers\ArrayOfTypeChecker;
 use Prezly\PropTypes\Checkers\CallbackTypeChecker;
 use Prezly\PropTypes\Checkers\ChainableTypeChecker;
+use Prezly\PropTypes\Checkers\EnumTypeChecker;
 use Prezly\PropTypes\Checkers\InstanceTypeChecker;
 use Prezly\PropTypes\Checkers\PrimitiveTypeChecker;
 use Prezly\PropTypes\Checkers\ShapeTypeChecker;
@@ -112,6 +113,11 @@ final class PropTypes
     public static function oneOfType(array $checkers): ChainableTypeChecker
     {
         return new ChainableTypeChecker(new UnionTypeChecker($checkers));
+    }
+
+    public static function oneOf(array $expected_values): ChainableTypeChecker
+    {
+        return new ChainableTypeChecker(new EnumTypeChecker($expected_values));
     }
 
     public static function shape(array $shape): ChainableTypeChecker
