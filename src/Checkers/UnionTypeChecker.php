@@ -44,7 +44,6 @@ final class UnionTypeChecker implements TypeChecker
 
         return new PropTypeException(
             $prop_name,
-            'invalid',
             "Invalid `{$prop_full_name}` supplied, none of types matched."
         );
     }

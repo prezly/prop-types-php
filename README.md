@@ -81,7 +81,6 @@ function myFunction(array $options): void
                 if (! preg_match('/matchme /', $props[$prop_name])) {
                     return new PropTypeException(
                         $prop_name,
-                        'invalid',
                         'Invalid prop `' . $prop_full_name . '` supplied. Validation failed.'
                     );
                 }
@@ -99,7 +98,6 @@ function myFunction(array $options): void
                 if (! preg_match('/matchme /', $props[$prop_name])) {
                     return new PropTypeException(
                         $prop_name,
-                        'invalid',
                         'Invalid prop `' . $prop_full_name . '` supplied. Validation failed.'
                     );
                 }

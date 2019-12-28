@@ -33,7 +33,6 @@ class ArrayOfTypeCheckerTest extends TestCase
         $error = (new ArrayOfTypeChecker(new AnyTypeChecker()))->validate(['value' => $value], 'value', 'test.value');
         $this->assertNotNull($error);
         $this->assertEquals('value', $error->getPropName());
-        $this->assertEquals('invalid', $error->getErrorCode());
         $this->assertEquals(
             "Invalid property `test.value` of type `{$actual_type}` supplied, expected an array.",
             $error->getMessage()

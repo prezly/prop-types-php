@@ -68,7 +68,6 @@ class PropTypesTest extends TestCase
         } catch (PropTypeException $error) {
             $this->assertInstanceOf(PropTypeException::class, $error);
             $this->assertEquals('job', $error->getPropName());
-            $this->assertEquals('unexpected_extra_property', $error->getErrorCode());
             $this->assertEquals('Unexpected extra property `job` supplied.', $error->getMessage());
         }
     }

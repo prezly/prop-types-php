@@ -32,7 +32,6 @@ class ChainableTypeCheckerTest extends TestCase
         $error = $checker->validate(['name' => 'Elvis'], 'job', 'job');
         $this->assertNotNull($error);
         $this->assertEquals('job', $error->getPropName());
-        $this->assertEquals('required', $error->getErrorCode());
         $this->assertEquals("The property `job` is marked as required, but it's not defined.", $error->getMessage());
     }
 
@@ -47,7 +46,6 @@ class ChainableTypeCheckerTest extends TestCase
         $error = $checker->validate(['name' => 'Elvis', 'job' => null], 'job', 'job');
         $this->assertNotNull($error);
         $this->assertEquals('job', $error->getPropName());
-        $this->assertEquals('not_null', $error->getErrorCode());
         $this->assertEquals("The property `job` is marked as not-null, but its value is `null`.", $error->getMessage());
     }
 

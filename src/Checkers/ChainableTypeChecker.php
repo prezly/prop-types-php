@@ -33,7 +33,6 @@ final class ChainableTypeChecker implements TypeChecker
             if ($this->is_required) {
                 return new PropTypeException(
                     $prop_name,
-                    'required',
                     "The property `{$prop_full_name}` is marked as required, but it's not defined."
                 );
             }
@@ -44,7 +43,6 @@ final class ChainableTypeChecker implements TypeChecker
             if (! $this->is_nullable) {
                 return new PropTypeException(
                     $prop_name,
-                    'not_null',
                     "The property `{$prop_full_name}` is marked as not-null, but its value is `null`."
                 );
             }

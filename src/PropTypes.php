@@ -50,7 +50,6 @@ final class PropTypes
                 if (! isset($specs[$prop_name])) {
                     throw new PropTypeException(
                         $prop_name,
-                        'unexpected_extra_property',
                         "Unexpected extra property `{$prop_name}` supplied."
                     );
                 }

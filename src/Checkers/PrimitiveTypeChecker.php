@@ -23,7 +23,6 @@ final class PrimitiveTypeChecker implements TypeChecker
 
             return new PropTypeException(
                 $prop_name,
-                'invalid',
                 "Invalid property `{$prop_full_name}` of type `{$actual_type}` supplied, expected `{$this->expected_type}`."
             );
         }

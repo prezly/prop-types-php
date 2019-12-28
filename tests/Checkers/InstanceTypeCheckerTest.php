@@ -38,7 +38,6 @@ class InstanceTypeCheckerTest extends TestCase
         $error = (new InstanceTypeChecker($expected_class))->validate(['value' => $value], 'value', 'test.value');
         $this->assertNotNull($error);
         $this->assertEquals('value', $error->getPropName());
-        $this->assertEquals('invalid', $error->getErrorCode());
         $this->assertEquals(
             "Invalid property `test.value` of type `{$actual_type}` supplied, expected instance of `{$expected_class}`.",
             $error->getMessage()

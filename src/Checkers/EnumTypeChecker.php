@@ -38,7 +38,6 @@ final class EnumTypeChecker implements TypeChecker
 
         return new PropTypeException(
             $prop_name,
-            'invalid',
             "Invalid property `{$prop_full_name}` of value `{$value_string}` supplied, expected one of: {$expected_values_string}."
         );
     }

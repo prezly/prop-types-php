@@ -30,7 +30,6 @@ class EnumTypeCheckerTest extends TestCase
     {
         $error = (new EnumTypeChecker($expected_values))->validate(['value' => $value], 'value', 'test.value');
         $this->assertNotNull($error);
-        $this->assertSame('invalid', $error->getCode());
         $this->assertSame('value', $error->getPropName());
         $this->assertSame($expected_error, $error->getMessage());
     }

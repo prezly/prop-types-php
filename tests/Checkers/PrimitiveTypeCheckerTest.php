@@ -34,7 +34,6 @@ class PrimitiveTypeCheckerTest extends TestCase
         $error = (new PrimitiveTypeChecker($expected_type))->validate(['value' => $value], 'value', 'test.value');
         $this->assertNotNull($error);
         $this->assertEquals('value', $error->getPropName());
-        $this->assertEquals('invalid', $error->getErrorCode());
         $this->assertEquals(
             "Invalid property `test.value` of type `{$actual_type}` supplied, expected `{$expected_type}`.",
             $error->getMessage()

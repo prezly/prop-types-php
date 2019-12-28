@@ -47,14 +47,13 @@ class CallbackTypeCheckerTest extends TestCase
     public function it_should_fail_if_callback_returns_an_error()
     {
         $checker = (new CallbackTypeChecker(function () {
-            return new PropTypeException('prop', 'whatever', 'Prop is not valid');
+            return new PropTypeException('prop', 'Prop is not valid');
         }));
 
         $error = $checker->validate(['name' => 'Elvis Presley'], 'name', 'test.name');
 
         $this->assertInstanceOf(PropTypeException::class, $error);
         $this->assertSame('prop', $error->getPropName());
-        $this->assertSame('whatever', $error->getCode());
         $this->assertSame('Prop is not valid', $error->getMessage());
     }
 
@@ -64,14 +63,13 @@ class CallbackTypeCheckerTest extends TestCase
     public function it_should_fail_if_callback_throws_an_error()
     {
         $checker = (new CallbackTypeChecker(function () {
-            throw new PropTypeException('prop', 'whatever', 'Prop is not valid');
+            throw new PropTypeException('prop', 'Prop is not valid');
         }));
 
         $error = $checker->validate(['name' => 'Elvis Presley'], 'name', 'test.name');
 
         $this->assertInstanceOf(PropTypeException::class, $error);
         $this->assertSame('prop', $error->getPropName());
-        $this->assertSame('whatever', $error->getCode());
         $this->assertSame('Prop is not valid', $error->getMessage());
     }
 
@@ -88,7 +86,6 @@ class CallbackTypeCheckerTest extends TestCase
 
         $this->assertInstanceOf(PropTypeException::class, $error);
         $this->assertSame('name', $error->getPropName());
-        $this->assertSame('invalid', $error->getCode());
         $this->assertSame('Prop is not valid', $error->getMessage());
     }
 

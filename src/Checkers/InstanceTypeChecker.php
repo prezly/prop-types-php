@@ -27,7 +27,6 @@ final class InstanceTypeChecker implements TypeChecker
             $actual_prop_type = is_object($prop_value) ? get_class($prop_value) : gettype($prop_value);
             return new PropTypeException(
                 $prop_name,
-                'invalid',
                 "Invalid property `{$prop_full_name}` of type `{$actual_prop_type}` supplied, expected instance of `{$this->expected_class}`."
             );
         }

@@ -30,7 +30,7 @@ final class CallbackTypeChecker implements TypeChecker
         } catch (PropTypeException $exception) {
             $error = $exception;
         } catch (InvalidArgumentException $exception) {
-            $error = new PropTypeException($prop_name, 'invalid', $exception->getMessage(), $exception);
+            $error = new PropTypeException($prop_name, $exception->getMessage(), $exception);
         }
 
         if ($error === null) {

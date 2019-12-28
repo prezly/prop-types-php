@@ -28,7 +28,6 @@ final class ArrayOfTypeChecker implements TypeChecker
 
             return new PropTypeException(
                 $prop_name,
-                'invalid',
                 "Invalid property `{$prop_full_name}` of type `{$prop_type}` supplied, expected an array."
             );
         }

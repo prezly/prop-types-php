@@ -35,7 +35,6 @@ class StrictShapeTypeCheckerTest extends TestCase
         $error = (new StrictShapeTypeChecker($shape))->validate(['value' => $value], 'value', 'test.value');
         $this->assertNotNull($error);
         // $this->assertEquals('value', $error->getPropName());
-        $this->assertEquals('invalid', $error->getErrorCode());
     }
 
     public function valid_examples(): iterable

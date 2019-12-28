@@ -43,7 +43,6 @@ final class ShapeTypeChecker implements TypeChecker
 
             return new PropTypeException(
                 $prop_name,
-                'invalid',
                 "Invalid property `{$prop_full_name}` of type `{$prop_type}` supplied, expected an associative array."
             );
         }
@@ -52,7 +51,7 @@ final class ShapeTypeChecker implements TypeChecker
             $error = $checker->validate($prop_value, (string) $key, "{$prop_full_name}.{$key}");
 
             if ($error !== null) {
-                return new PropTypeException($prop_name, 'invalid', $error->getMessage(), $error);
+                return new PropTypeException($prop_name, $error->getMessage(), $error);
             }
         }
 
