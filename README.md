@@ -116,7 +116,7 @@ function myFunction(array $options): void
    - *Required* means a property has to be defined in the props object
    - *Nullable* means a property value can be set to `null`  
    
-   React PropTypes has more vague logic around required, nulls and undefined.
+   React PropTypes has less straightforward logic around required, nulls and undefined.
    
 2. As opposed to React PropTypes we don't have a separate checker for null (`PropTypes::null()`).
    Instead any property can become nullable by calling `->isNullable()` on its checker:
