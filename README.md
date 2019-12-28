@@ -27,7 +27,7 @@ use Prezly\PropTypes\PropTypes;
 function myFunction(array $options): void
 {
     PropTypes::check([
-        // You can declare that a prop is a specific JS primitive.
+        // You can declare that a prop has a specific type.
         // By default, these are all optional.
         'optionalArray' => PropTypes::array(),
         'optionalBool' => PropTypes::bool(),
