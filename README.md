@@ -1,6 +1,6 @@
 # PropTypes.php
 
-Complete PHP port of React PropTypes.
+Complete PHP port of [React PropTypes](https://github.com/facebook/prop-types).
 
 Runtime type checking for complex properties structures.
 
