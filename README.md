@@ -4,7 +4,7 @@ Complete PHP port of [React PropTypes](https://github.com/facebook/prop-types).
 
 Runtime type checking for complex properties structures.
 
-You can use prop-types to document the intended types of properties passed into your code. PropTypes will check props passed to your functions against those definitions, and throw and error if they don’t match.
+You can use prop-types to document the intended types of properties passed into your code. PropTypes will check props passed to your functions against those definitions, and throw an error if they don’t match.
 
 <img src="https://github.com/prezly/prop-types-php/workflows/Test/badge.svg" alt="Build status">
 
