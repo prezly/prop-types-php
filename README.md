@@ -11,7 +11,7 @@ You can use prop-types to document the intended types of properties passed into 
 ## Installation
 
 ```
-composer require prezly/prop-types-php
+composer require prezly/prop-types
 ```
 
 ## Usage
