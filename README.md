@@ -113,8 +113,8 @@ function myFunction(array $options): void
 
 ## Difference from React PropTypes
 
-1. In this package we've split *required* and *nullalbe* checks into different traits:
-   - *Required* means a property has to be defined in the props object
+1. In this package we've split *optional* and *nullalbe* checks into different traits:
+   - *Optional* means a property can be omitted from the props object  
    - *Nullable* means a property value can be set to `null`  
    
    React PropTypes has less straightforward logic around required, nulls and undefined.
