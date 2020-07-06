@@ -127,6 +127,11 @@ function myFunction(array $options): void
       'title' => PropTypes::string()->isNullable(),
    ]
    ```
+   
+3. Unlike React PropTypes, all properties are *required* by default (meaning they cannot be omitted).
+   Unless `isOptional()` is explicitly called on its type checker. 
+
+   This is done this way to closer match native PHP language semantics.
 
 ## Changelog
 
