@@ -124,3 +124,7 @@ function myFunction(array $options): void
       'title' => PropTypes::string()->isNullable(),
    ]
    ```
+
+-----------------
+
+Brought to you with :heart: by [Prezly](https://www.prezly.com/?utm_source=github&utm_campaign=prop-types-php).
