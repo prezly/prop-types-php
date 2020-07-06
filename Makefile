@@ -7,4 +7,4 @@ test: vendor
 	vendor/bin/phpunit
 
 vendor: composer.json
-	composer install
+	composer install --prefer-dist
