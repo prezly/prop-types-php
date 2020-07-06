@@ -9,15 +9,15 @@ final class ChainableTypeChecker implements TypeChecker
     private $checker;
 
     /** @var bool */
-    private $is_required;
+    private $is_optional;
 
     /** @var bool */
     private $is_nullable;
 
-    public function __construct(TypeChecker $checker, bool $is_required = false, bool $is_nullable = false)
+    public function __construct(TypeChecker $checker, bool $is_optional = false, bool $is_nullable = false)
     {
         $this->checker = $checker;
-        $this->is_required = $is_required;
+        $this->is_optional = $is_optional;
         $this->is_nullable = $is_nullable;
     }
 
@@ -30,7 +30,7 @@ final class ChainableTypeChecker implements TypeChecker
     public function validate(array $props, string $prop_name, string $prop_full_name): ?PropTypeException
     {
         if (! array_key_exists($prop_name, $props)) {
-            if ($this->is_required) {
+            if (! $this->is_optional) {
                 return new PropTypeException(
                     $prop_name,
                     "The property `{$prop_full_name}` is marked as required, but it's not defined."
@@ -52,13 +52,13 @@ final class ChainableTypeChecker implements TypeChecker
         return $this->checker->validate($props, $prop_name, $prop_full_name);
     }
 
-    public function isRequired(): self
+    public function isOptional(): self
     {
         return new self($this->checker, true, $this->is_nullable);
     }
 
     public function isNullable(): self
     {
-        return new self($this->checker, $this->is_required, true);
+        return new self($this->checker, $this->is_optional, true);
     }
 }

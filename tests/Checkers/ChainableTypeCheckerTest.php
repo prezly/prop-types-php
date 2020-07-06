@@ -7,32 +7,34 @@ use PHPUnit\Framework\TestCase;
 use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Checkers\TypeChecker;
 
-class ChainableTypeCheckerTest extends TestCase
+final class ChainableTypeCheckerTest extends TestCase
 {
     /**
      * @test
      */
-    public function it_should_allow_prop_missing_by_default()
+    public function it_should_not_allow_prop_missing_by_default()
     {
         $checker = new ChainableTypeChecker($this->mockChecker(function (MockObject $mock) {
             $mock->expects(self::never())->method('validate');
         }));
         $error = $checker->validate(['name' => 'Elvis'], 'job', 'job');
-        $this->assertNull($error);
+        $this->assertNotNull($error);
+        $this->assertEquals('job', $error->getPropName());
+        $this->assertEquals("The property `job` is marked as required, but it's not defined.", $error->getMessage());
     }
 
     /**
      * @test
      */
-    public function it_should_not_allow_prop_missing_if_configured_so()
+    public function it_should_allow_prop_missing_if_configured_so()
     {
-        $checker = (new ChainableTypeChecker($this->mockChecker(function (MockObject $mock) {
-            $mock->expects(self::never())->method('validate');
-        })))->isRequired();
+        $checker = (new ChainableTypeChecker(
+            $this->mockChecker(function (MockObject $mock) {
+                $mock->expects(self::never())->method('validate');
+            })
+        ))->isOptional();
         $error = $checker->validate(['name' => 'Elvis'], 'job', 'job');
-        $this->assertNotNull($error);
-        $this->assertEquals('job', $error->getPropName());
-        $this->assertEquals("The property `job` is marked as required, but it's not defined.", $error->getMessage());
+        $this->assertNull($error);
     }
 
     /**

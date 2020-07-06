@@ -73,12 +73,12 @@ class StrictShapeTypeCheckerTest extends TestCase
         ];
 
         yield 'arbitrary shape requirements, empty array' => [
-            ['name' => PropTypes::string()->isRequired()],
+            ['name' => PropTypes::string()],
             []
         ];
 
         yield 'arbitrary shape requirements, array with missing prop' => [
-            ['name' => PropTypes::string()->isRequired()],
+            ['name' => PropTypes::string()],
             ['title' => 'The King'],
         ];
 
@@ -88,12 +88,12 @@ class StrictShapeTypeCheckerTest extends TestCase
         ];
 
         yield 'tuple requirements, empty array' => [
-            [PropTypes::string()->isRequired()],
+            [PropTypes::string()],
             [],
         ];
 
         yield 'tuple requirements, array with not enough elements' => [
-            [PropTypes::string()->isRequired(), PropTypes::string()->isRequired()],
+            [PropTypes::string(), PropTypes::string()],
             ['Elvis Presley']
         ];
 

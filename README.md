@@ -29,53 +29,56 @@ function myFunction(array $options): void
     PropTypes::check([
         // You can declare that a prop has a specific type.
         // By default, these are all optional.
-        'optionalArray' => PropTypes::array(),
-        'optionalBool' => PropTypes::bool(),
-        'optionalInteger' => PropTypes::int(),
-        'optionalFloat' => PropTypes::float(),
-        'optionalObject' => PropTypes::object(),
-        'optionalString' => PropTypes::string(),
+        'requiredArray' => PropTypes::array(),
+        'requiredBool' => PropTypes::bool(),
+        'requiredInteger' => PropTypes::int(),
+        'requiredFloat' => PropTypes::float(),
+        'requiredObject' => PropTypes::object(),
+        'requiredString' => PropTypes::string(),
         // You can also declare that a prop is an instance of a class.
         // This uses `instanceof` operator.
-        'optionalDateTime' => PropTypes::instanceOf(DateTime::class),
+        'requiredDateTime' => PropTypes::instanceOf(DateTime::class),
         // You can ensure that your prop is limited to specific values
         // by treating it as an enum.
-        'optionalEnum' => PropTypes::oneOf(['News', 'Photos']),
+        'requiredEnum' => PropTypes::oneOf(['News', 'Photos']),
         // An object that could be one of many types
-        'optionalUnion' => PropTypes::oneOfType([
+        'requiredUnion' => PropTypes::oneOfType([
             PropTypes::string(),
             PropTypes::int(),
             PropTypes::instanceOf(DateTime::class),
         ]),
 
         // An array of a certain type
-        'optionalArrayOf' => PropTypes::arrayOf(PropTypes::int()),
+        'requiredArrayOf' => PropTypes::arrayOf(PropTypes::int()),
 
-        // You can chain any of the above with `isRequired`
-        // to make sure an error is thrown if the prop isn't provided.
+        // You can chain any of the above with `isOptional()`
+        // to make sure an error is not thrown if the prop isn't provided.
 
         // An object taking on a particular shape
-        'optionalArrayWithShape' => PropTypes::shape([
-            'optionalProperty' => PropTypes::string(),
-            'requiredProperty' => PropTypes::int()->isRequired(),
+        'requiredArrayWithShape' => PropTypes::shape([
+            'requiredProperty' => PropTypes::int(),
+            'optionalProperty' => PropTypes::string()->isOptional(),
         ]),
 
         // An object with errors on extra properties
-        'optionalObjectWithStrictShape' => PropTypes::exact([
-            'optionalProperty' => PropTypes::string(),
-            'requiredProperty' => PropTypes::int()->isRequired(),
+        'requiredObjectWithStrictShape' => PropTypes::exact([
+            'requiredProperty' => PropTypes::int(),
+            'optionalProperty' => PropTypes::string()->isOptional(),
         ]),
+    
+        // You can chain any of the above with `isNullable()`
+        // to allow passing `null` as a value.
 
+        'requiredNullableString' => PropTypes::string()->isNullable(),
+        'optionalNullableString' => PropTypes::string()->isNullable()->isOptional(),
+        
         // A value of any data type (except null)
-        'requiredAny' => PropTypes::any()->isRequired(),
+        'requiredAny' => PropTypes::any(),
         // A value of any data type (including null)
-        'requiredNullableAny' => PropTypes::any()->isRequired()->isNullable(),
-
-        // A required property that can be string or null
-        'requiredNullableString' => PropTypes::string()->isRequired()->isNullable(),
+        'requiredNullableAny' => PropTypes::any()->isNullable(),
 
         // You can also specify a custom validator.
-        // It should return a PropTypeException instance if the validation fails.
+        // It should *return* a PropTypeException instance if the validation fails.
         'customProp' => PropTypes::callback(
             function (array $props, string $prop_name, string $prop_full_name): ?PropTypeException {
                 if (! preg_match('/matchme /', $props[$prop_name])) {
