@@ -16,7 +16,10 @@ composer require prezly/prop-types
 
 ## Usage
 
-PropTypes was originally exposed as part of the React core module, and is commonly used with React components. We've tried to bring the familiarity of React PropTypes into PHP. Here is an example of using PropTypes with a PHP function, which also documents the different validators provided.
+PropTypes was originally exposed as part of the React core module, and is commonly used with React components. 
+We've tried to bring the familiarity of React PropTypes into PHP. 
+
+You can call `PropTypes::check()` to validate an array of props, providing it with a props spec as below:
 
 ```php
 <?php
