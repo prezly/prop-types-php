@@ -99,8 +99,8 @@ class PropTypesTest extends TestCase
             ['name' => PropTypes::any()->isNullable()],
             ['name' => null],
         ];
-        yield 'any: missing' => [
-            ['name' => PropTypes::any()],
+        yield 'any: optional' => [
+            ['name' => PropTypes::any()->isOptional()],
             [],
         ];
 
