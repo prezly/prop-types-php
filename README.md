@@ -50,6 +50,7 @@ function myFunction(array $options): void
             PropTypes::int(),
             PropTypes::instanceOf(DateTime::class),
         ]),
+        'requiredCallable' => PropTypes::callable(),
 
         // An array of a certain type
         'requiredArrayOf' => PropTypes::arrayOf(PropTypes::int()),
