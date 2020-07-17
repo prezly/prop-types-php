@@ -144,6 +144,13 @@ class PropTypesTest extends TestCase
             ['fruit' => PropTypes::oneOf(['apple', 'banana', 'citrus'])],
             ['fruit' => 'banana']
         ];
+
+        yield 'callable' => [
+            ['callback' => PropTypes::callable()],
+            ['callback' => function () {
+                return null;
+            }],
+        ];
     }
 
     public function invalid_data_examples(): iterable
