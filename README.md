@@ -113,7 +113,7 @@ function myFunction(array $options): void
 
 ## Difference from React PropTypes
 
-1. In this package we've split *optional* and *nullalbe* checks into different traits:
+1. In this package we've split *optional* and *nullabe* checks into different traits:
    - *Optional* means a property can be omitted from the props object  
    - *Nullable* means a property value can be set to `null`  
    
