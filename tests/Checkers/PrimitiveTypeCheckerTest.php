@@ -5,7 +5,7 @@ namespace Prezly\PropTypes\Tests\Checkers;
 use PHPUnit\Framework\TestCase;
 use Prezly\PropTypes\Checkers\PrimitiveTypeChecker;
 
-class PrimitiveTypeCheckerTest extends TestCase
+final class PrimitiveTypeCheckerTest extends TestCase
 {
     /**
      * @test

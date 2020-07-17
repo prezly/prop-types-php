@@ -7,7 +7,7 @@ use Prezly\PropTypes\Checkers\CallbackTypeChecker;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 use RuntimeException;
 
-class CallbackTypeCheckerTest extends TestCase
+final class CallbackTypeCheckerTest extends TestCase
 {
     /**
      * @test

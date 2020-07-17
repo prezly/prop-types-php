@@ -9,7 +9,7 @@ use Prezly\PropTypes\Checkers\AnyTypeChecker;
 use Prezly\PropTypes\Checkers\ArrayOfTypeChecker;
 use Prezly\PropTypes\Checkers\TypeChecker;
 
-class ArrayOfTypeCheckerTest extends TestCase
+final class ArrayOfTypeCheckerTest extends TestCase
 {
     /**
      * @test

@@ -8,7 +8,7 @@ use Prezly\PropTypes\Checkers\ShapeTypeChecker;
 use Prezly\PropTypes\Checkers\StrictShapeTypeChecker;
 use Prezly\PropTypes\PropTypes;
 
-class StrictShapeTypeCheckerTest extends TestCase
+final class StrictShapeTypeCheckerTest extends TestCase
 {
     /**
      * @test

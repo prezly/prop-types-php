@@ -7,7 +7,7 @@ use Prezly\PropTypes\Checkers\CallableTypeChecker;
 use Prezly\PropTypes\Checkers\PrimitiveTypeChecker;
 use stdClass;
 
-class CallableTypeCheckerTest extends TestCase
+final class CallableTypeCheckerTest extends TestCase
 {
     /**
      * @test

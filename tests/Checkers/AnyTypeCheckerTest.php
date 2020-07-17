@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Prezly\PropTypes\Checkers\AnyTypeChecker;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
-class AnyTypeCheckerTest extends TestCase
+final class AnyTypeCheckerTest extends TestCase
 {
     /**
      * @test

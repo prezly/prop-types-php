@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Prezly\PropTypes\Checkers\EnumTypeChecker;
 use stdClass;
 
-class EnumTypeCheckerTest extends TestCase
+final class EnumTypeCheckerTest extends TestCase
 {
     /**
      * @test

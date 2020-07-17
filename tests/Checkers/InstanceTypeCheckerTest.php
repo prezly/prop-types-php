@@ -9,7 +9,7 @@ use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Checkers\InstanceTypeChecker;
 use Prezly\PropTypes\Checkers\TypeChecker;
 
-class InstanceTypeCheckerTest extends TestCase
+final class InstanceTypeCheckerTest extends TestCase
 {
     /**
      * @test
