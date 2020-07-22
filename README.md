@@ -31,7 +31,7 @@ function myFunction(array $options): void
 {
     PropTypes::check([
         // You can declare that a prop has a specific type.
-        // By default, these are all optional.
+        // By default, these are all required and not nullable.
         'requiredFoo' => PropTypes::equals('foo'),
         'requiredArray' => PropTypes::array(),
         'requiredBool' => PropTypes::bool(),
