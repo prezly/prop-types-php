@@ -6,7 +6,7 @@ use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 use Prezly\PropTypes\PropTypes;
 
-class PropTypesTest extends TestCase
+final class PropTypesTest extends TestCase
 {
     /**
      * @test
@@ -102,6 +102,26 @@ class PropTypesTest extends TestCase
         yield 'any: optional' => [
             ['name' => PropTypes::any()->isOptional()],
             [],
+        ];
+
+        yield 'equals: null' => [
+            ['type' => PropTypes::equals(null)],
+            ['type' => null],
+        ];
+
+        yield 'equals: string' => [
+            ['type' => PropTypes::equals('object')],
+            ['type' => 'object'],
+        ];
+
+        yield 'equals: int' => [
+            ['count' => PropTypes::equals(500)],
+            ['count' => 500],
+        ];
+
+        yield 'equals: array' => [
+            ['tags' => PropTypes::equals(['a', 'b', 'c'])],
+            ['tags' => ['a', 'b', 'c']],
         ];
 
         yield 'arrayOf: string' => [

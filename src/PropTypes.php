@@ -8,6 +8,7 @@ use Prezly\PropTypes\Checkers\CallableTypeChecker;
 use Prezly\PropTypes\Checkers\CallbackTypeChecker;
 use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Checkers\EnumTypeChecker;
+use Prezly\PropTypes\Checkers\EqualityTypeChecker;
 use Prezly\PropTypes\Checkers\InstanceTypeChecker;
 use Prezly\PropTypes\Checkers\PrimitiveTypeChecker;
 use Prezly\PropTypes\Checkers\ShapeTypeChecker;
@@ -63,6 +64,16 @@ class PropTypes
                 throw $error;
             }
         }
+    }
+
+    public static function equals($value): ChainableTypeChecker
+    {
+        $checker = new ChainableTypeChecker(new EqualityTypeChecker($value));
+
+        // No need to initially forbid null,
+        // as equality check will reject null value,
+        // unless it is expected.
+        return $checker->isNullable();
     }
 
     public static function any(): ChainableTypeChecker
