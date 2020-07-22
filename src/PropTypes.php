@@ -16,7 +16,7 @@ use Prezly\PropTypes\Checkers\TypeChecker;
 use Prezly\PropTypes\Checkers\UnionTypeChecker;
 use Prezly\PropTypes\Exceptions\PropTypeException;
 
-final class PropTypes
+class PropTypes
 {
     private const DEFAULT_OPTIONS = [
         'allow_extra_properties' => false,
