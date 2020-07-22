@@ -6,6 +6,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Prezly\PropTypes\Checkers\ChainableTypeChecker;
 use Prezly\PropTypes\Checkers\TypeChecker;
+use Prezly\PropTypes\Exceptions\PropTypeException;
 
 final class ChainableTypeCheckerTest extends TestCase
 {
@@ -43,7 +44,9 @@ final class ChainableTypeCheckerTest extends TestCase
     public function it_should_not_allow_nulls_by_default()
     {
         $checker = new ChainableTypeChecker($this->mockChecker(function (MockObject $mock) {
-            $mock->expects(self::never())->method('validate');
+            $mock->expects(self::any())
+                ->method('validate')
+                ->willReturn(new PropTypeException('name', 'Invalid'));
         }));
         $error = $checker->validate(['name' => 'Elvis', 'job' => null], 'job', 'job');
         $this->assertNotNull($error);

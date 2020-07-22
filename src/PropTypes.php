@@ -68,12 +68,7 @@ class PropTypes
 
     public static function equals($value): ChainableTypeChecker
     {
-        $checker = new ChainableTypeChecker(new EqualityTypeChecker($value));
-
-        // No need to initially forbid null,
-        // as equality check will reject null value,
-        // unless it is expected.
-        return $checker->isNullable();
+        return new ChainableTypeChecker(new EqualityTypeChecker($value));
     }
 
     public static function any(): ChainableTypeChecker

@@ -96,7 +96,7 @@ final class PropTypesTest extends TestCase
             ['name' => 'Elvis Presley'],
         ];
         yield 'any: null' => [
-            ['name' => PropTypes::any()->isNullable()],
+            ['name' => PropTypes::any()],
             ['name' => null],
         ];
         yield 'any: optional' => [
@@ -112,6 +112,11 @@ final class PropTypesTest extends TestCase
         yield 'equals: string' => [
             ['type' => PropTypes::equals('object')],
             ['type' => 'object'],
+        ];
+
+        yield 'equals: nullable string' => [
+            ['type' => PropTypes::equals('object')->isNullable()],
+            ['type' => null],
         ];
 
         yield 'equals: int' => [
@@ -175,14 +180,14 @@ final class PropTypesTest extends TestCase
 
     public function invalid_data_examples(): iterable
     {
-        yield 'any: null when not-nullable' => [
-            ['name' => PropTypes::any()],
-            ['name' => null],
-        ];
-
         yield 'any: missing when required' => [
             ['name' => PropTypes::any()],
             [],
+        ];
+
+        yield 'equals: non-nullable string' => [
+            ['type' => PropTypes::equals('object')],
+            ['type' => null],
         ];
 
         yield 'extra property "occupation"' => [
