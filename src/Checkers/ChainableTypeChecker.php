@@ -41,6 +41,11 @@ final class ChainableTypeChecker implements TypeChecker
 
         if ($props[$prop_name] === null) {
             if (! $this->is_nullable) {
+                // If nested checker allows NULL, we allow it too.
+                if ($this->checker->validate($props, $prop_name, $prop_full_name) === null) {
+                    return null;
+                }
+
                 return new PropTypeException(
                     $prop_name,
                     "The property `{$prop_full_name}` is marked as not-null, but its value is `null`."
