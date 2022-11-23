@@ -24,12 +24,12 @@ class PropTypes
     ];
 
     /**
-     * @param \Prezly\PropTypes\Checkers\TypeChecker[] $specs
-     * @param array $props
-     * @param array $options
+     * @param TypeChecker[]  $specs
+     * @param array          $props
+     * @param array          $options
      *        - bool "allow_extra_properties" (default: false)
-     * @throws \Prezly\PropTypes\Exceptions\PropTypeException When a prop-type validation fails.
-     * @throws \InvalidArgumentException When invalid specs configuration was given.
+     * @throws PropTypeException When a prop-type validation fails.
+     * @throws InvalidArgumentException When invalid specs configuration was given.
      */
     public static function check(array $specs, array $props, array $options = []): void
     {

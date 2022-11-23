@@ -6,11 +6,11 @@ use Prezly\PropTypes\Exceptions\PropTypeException;
 
 final class StrictShapeTypeChecker implements TypeChecker
 {
-    /** @var \Prezly\PropTypes\Checkers\TypeChecker[] */
+    /** @var TypeChecker[] */
     private $shape_types;
 
     /**
-     * @param \Prezly\PropTypes\Checkers\TypeChecker[] $shape_types
+     * @param TypeChecker[]  $shape_types
      */
     public function __construct(array $shape_types)
     {
@@ -32,7 +32,7 @@ final class StrictShapeTypeChecker implements TypeChecker
      * @param array $props
      * @param string $prop_name
      * @param string $prop_full_name
-     * @return \Prezly\PropTypes\Exceptions\PropTypeException|null Exception is returned if prop type is invalid
+     * @return PropTypeException|null Exception is returned if prop type is invalid
      */
     public function validate(array $props, string $prop_name, string $prop_full_name): ?PropTypeException
     {

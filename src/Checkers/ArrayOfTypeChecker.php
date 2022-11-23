@@ -5,7 +5,7 @@ use Prezly\PropTypes\Exceptions\PropTypeException;
 
 final class ArrayOfTypeChecker implements TypeChecker
 {
-    /** @var \Prezly\PropTypes\Checkers\TypeChecker */
+    /** @var TypeChecker */
     private $checker;
 
     public function __construct(TypeChecker $checker)
@@ -17,7 +17,7 @@ final class ArrayOfTypeChecker implements TypeChecker
      * @param array $props
      * @param string $prop_name
      * @param string $prop_full_name
-     * @return \Prezly\PropTypes\Exceptions\PropTypeException|null Exception is returned if prop type is invalid
+     * @return PropTypeException|null Exception is returned if prop type is invalid
      */
     public function validate(array $props, string $prop_name, string $prop_full_name): ?PropTypeException
     {
