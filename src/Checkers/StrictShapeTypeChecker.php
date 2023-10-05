@@ -59,7 +59,7 @@ final class StrictShapeTypeChecker implements TypeChecker
             if (empty($checker)) {
                 return new PropTypeException(
                     $prop_name,
-                    "Invalid property `{$prop_full_name}` with unexpected key `${key}` supplied."
+                    "Invalid property `{$prop_full_name}` with unexpected key `{$key}` supplied."
                 );
             }
 
